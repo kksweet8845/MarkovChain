@@ -1,44 +1,44 @@
-# MarkovChain
-The implementation of Markov Chain and HMM.
+>NC_000006.12 Homo sapiens chromosome 6, GRCh38.p13 Primary Assembly
+=================================================
+Finish loading from obj_island_1.obj
+res 1 island
+Start from line : 103093
+End to line : 104974
+Start position: t
+End position: C
+=================================================
+Finish loading from obj_island_2.obj
+res 2 island
+Start from line : 105467
+End to line : 119994
+Start position: g
+End position: G
+========================================================
+===================== Summary ==========================
+========================================================
 
-
-# Illustration
-
-- Note: Because I didn't find sequence described in the statements, I find another sequence which length is also approximately 100k long, starting with 'ttggtaccat' and ending with 'CTTTGCCTG',
-
-
-## Simple Markov Chain
-
-- Zero order markov chain
-    - Log 2 Probability : -295341.059760
-
-
-- A, T, C, G sta probability\
-
-| a    | t    | c    | g   |
-| ---- | ---- | ---- | --- |
-| 2.929685e-01 | 3.192353e-01 | 1.970112e-01 |  1.907850e-01   |
-
-
-- First order markov chain
-    - Log 2 Probability : -584165.254544
-
-```
-                   a            t            c            g
-    a   9.635000e-02 8.400391e-02 4.858698e-02 6.402956e-02 
-    t   7.135216e-02 1.107892e-01 6.298632e-02 7.410976e-02 
-    c   7.042188e-02 7.183058e-02 4.756367e-02 7.189703e-03 
-    g   5.484640e-02 5.260710e-02 3.787552e-02 4.545726e-02 
-```
+Simple Markov Chain
+Zero order Markov Chain
+A T C G sta
+           a           t           c           g
+2.929685e-01 3.192353e-01 1.970112e-01 1.907850e-01 
+zero order probability : -295341.059760
 
 
 
 
+First order Markov Chain
+               a       t       c       g
+a           9.635000e-02 8.400391e-02 4.858698e-02 6.402956e-02 
+t           7.135216e-02 1.107892e-01 6.298632e-02 7.410976e-02 
+c           7.042188e-02 7.183058e-02 4.756367e-02 7.189703e-03 
+g           5.484640e-02 5.260710e-02 3.787552e-02 4.545726e-02 
+first probability : -584165.254544
 
 
-- Second order markov chain
-    - Log 2 Probability : -1158744.584939
-```
+
+
+Second order Markov Chain
                       aa          at          ac          ag          ta          tt          tc          tg          ca          ct          cc          cg          ga          gt          gc          gg
           aa  1.4120e-02  1.0559e-02  5.5085e-03  6.7710e-03  7.7744e-03  8.4655e-03  4.5185e-03  6.4255e-03  5.6746e-03  4.8839e-03  2.8373e-03  5.9803e-04  6.0002e-03  5.0235e-03  3.1563e-03  4.0533e-03
           at  6.9970e-03  7.8741e-03  3.5018e-03  3.7277e-03  6.6514e-03  1.1841e-02  5.1763e-03  4.3058e-03  5.1231e-03  5.3491e-03  3.0898e-03  3.8540e-04  5.8142e-03  5.9072e-03  3.7742e-03  4.5118e-03
@@ -56,41 +56,28 @@ The implementation of Markov Chain and HMM.
           gt  3.5284e-03  3.7942e-03  1.9137e-03  2.7244e-03  3.3623e-03  6.6182e-03  3.3822e-03  3.4819e-03  3.2759e-03  3.9603e-03  2.3390e-03  2.9902e-04  3.7410e-03  3.9935e-03  2.6646e-03  3.5151e-03
           gc  3.5682e-03  3.4819e-03  2.4187e-03  3.3755e-03  2.5250e-03  4.1663e-03  2.6180e-03  4.2992e-03  3.5550e-03  3.8739e-03  2.0001e-03  4.8507e-04  2.9902e-04  4.8507e-04  3.3888e-04  3.8540e-04
           gg  4.5783e-03  3.0367e-03  1.9801e-03  3.9005e-03  2.6048e-03  3.5084e-03  2.2526e-03  3.4553e-03  3.1297e-03  3.6546e-03  2.1795e-03  5.5152e-04  3.4553e-03  2.7177e-03  2.0200e-03  2.4054e-03
-```
-## Hidden Markov Chain
-
-### Sequence information
-
-- Starting with "ttggtaccat"
-- Ending with "CTTTGCCTG"
-- Length : ~ 100k base
-
-### HMM arch
-
-![Image of HMM](https://i.imgur.com/jTk7Uzk.png)
-
-![Image of HMM](https://i.imgur.com/0yY3v0o.png)
-
-### Log probability
-
-- Forward Algorithm
-    - Log 2 Probability : -3.159066e+05
-
-- Backward Algorithm
-    - Log 2 Probability : -3.159073e+05
+Second probability : -1158744.584939
 
 
-- Applying learning algorithm
-    - Log 2 Probability : -3.009859e+05
+Hidden Markov Chain
+Forward prob: -3.142799e+05
+Backward prob: -3.142806e+05
 
-- State sequence
-The most likely state sequence is written in the state_sequence.txt
-
-
-### Another 100kb section
-- Information
-    - Start : "gagatccttc"
-    - End   : "ctttaaaagaaaa"
-- Forward Algorithm
-    - Log 2 probability : -2.324345e+06
-
+After applying learning algorithm
+State transisiton matrix
+2.000038e-01 1.999980e-01 2.000014e-01 1.999980e-01 1.999988e-01 
+1.999977e-01 2.000037e-01 1.999994e-01 1.999998e-01 1.999994e-01 
+1.999978e-01 2.000002e-01 2.000046e-01 1.999978e-01 1.999995e-01 
+1.999984e-01 1.999992e-01 2.000012e-01 2.000040e-01 1.999972e-01 
+1.999979e-01 1.999979e-01 1.999987e-01 2.000007e-01 2.000047e-01 
+State gene matrix
+2.500000e-01 2.500006e-01 2.500000e-01 2.499994e-01 
+2.500000e-01 2.500006e-01 2.500000e-01 2.499994e-01 
+2.500000e-01 2.500006e-01 2.500000e-01 2.499994e-01 
+2.500000e-01 2.500006e-01 2.500000e-01 2.499994e-01 
+2.500000e-01 2.500006e-01 2.500000e-01 2.499994e-01 
+Forward prob: -3.009856e+05
+Backward prob: -3.009859e+05
+================================================
+Another 100k base section
+Forward prob: -2.324345e+06

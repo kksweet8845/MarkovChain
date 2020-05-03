@@ -1,6 +1,9 @@
 # ignore file
 data/*
-
+main
+test
+path_output*.txt
+test
 # Prerequisites
 *.d
 
