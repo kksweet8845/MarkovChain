@@ -111,7 +111,7 @@ int extractEntry(const regex_t *entry_compiled_pattern,
     const char *another_entry_pattern = "^>[.]+";
     regex_t *gene_compiled_pattern = (regex_t *) malloc(sizeof(regex_t));
     regex_t *another_compiled_pattern = (regex_t *) malloc(sizeof(regex_t));
-    // memeory leak problem- bug!
+    // ! regcomp, memeory leak problem- bug!
     ok = regcomp(gene_compiled_pattern, gene_pattern, REG_EXTENDED | REG_ICASE);
     ok = regcomp(another_compiled_pattern, another_entry_pattern,
                  REG_EXTENDED | REG_ICASE);

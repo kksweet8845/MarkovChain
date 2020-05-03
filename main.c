@@ -8,29 +8,27 @@
 
 int main(void)
 {
+    // TODO Enter the name of the src file
     char *srcname = "./data/NC_000006.12_chromosome_6.txt";
-    // char* srcname = "./data/custimized_.txt";
     FILE *ftp = readFile(srcname);
 
-    char *buffer = malloc(sizeof(char) * (MAXLEN + 1));
+    // TODO Enter the entry name
     const char *entry_pattern =
         ">NC_000006.12 Homo sapiens chromosome 6, GRCh38.p13 Primary Assembly";
     regex_t *compiled_pattern = (regex_t *) malloc(sizeof(regex_t));
+
     int ok = 0;
     ok = regcomp(compiled_pattern, entry_pattern, REG_EXTENDED);
-
     entry_ptr nc1_entry = malloc(sizeof(entry_t));
-
+    // This will extract whole entry you specified
     extractEntry(compiled_pattern, ftp, nc1_entry);
-    // char* start_pattern = "tt";
-    // char* end_pattern = "ca";
 
+    // TODO Specify the line index
     int from = 100000;
     int to = 199999;
-    // int from = 0;
-    // int to = 0;
-    // ? =========================================================
 
+    // ? =========================================================
+    // ? Section one
     char *start_pattern = "ttggtaccat";
     char *end_pattern = "CTTTGCCTG";
 
@@ -40,6 +38,7 @@ int main(void)
                            start_pattern, end_pattern);
 
     // ? =========================================================
+    // ? Section two
     char *start_pattern2 = "gagatccttc";
     char *end_pattern2 = "ctttaaaagaaaa";
     char *filename2 = "obj_island_2.obj";
@@ -153,8 +152,10 @@ int main(void)
 
     char *e_name[4] = {"a", "t", "c", "g"};
     double trans_m_22[num_states][num_states] = {
-        {0.8, 0.01, 0.07, 0.01, 0.01},  {0.01, 0.9, 0.02, 0.05, 0.02},
-        {0.01, 0.06, 0.9, 0.01, 0.02},  {0.013, 0.024, 0.06, 0.9, 0.003},
+        {0.8, 0.01, 0.07, 0.01, 0.01},
+        {0.01, 0.9, 0.02, 0.05, 0.02},
+        {0.01, 0.06, 0.9, 0.01, 0.02},
+        {0.013, 0.024, 0.06, 0.9, 0.003},
     };
     double **trans_m = (double **) malloc(sizeof(double *) * num_states);
     for (int i = 0; i < num_states; i++) {
@@ -166,7 +167,9 @@ int main(void)
         }
     }
     double states_m_22[num_states][4] = {
-        {0.2, 0.2, 0.3, 0.3}, {0.4, 0.4, 0.1, 0.1},    {0.9, 0.01, 0.01, 0.08},
+        {0.2, 0.2, 0.3, 0.3},
+        {0.4, 0.4, 0.1, 0.1},
+        {0.9, 0.01, 0.01, 0.08},
         {0.4, 0.4, 0.1, 0.1},
     };
 
