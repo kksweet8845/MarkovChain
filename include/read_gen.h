@@ -43,6 +43,7 @@ char toLowercase(char);
 int calculateGene(const char*, island_array, char*);
 void initIsland(island_t_ptr);
 island_t_ptr extractS(entry_ptr, int, int, char*, char*);
+island_t_ptr extractS_from_file(char*, char*, entry_ptr, int, int, char*, char*);
 // void calculateIsland(entry_ptr, island_t_ptr);
 
 #endif

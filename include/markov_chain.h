@@ -77,10 +77,12 @@ hmm_t_ptr init_hmm(int, int, char**, double**, double**);
 
 
 
-
-double forward_sum(hmm_t_ptr, double*, int, char*, int*);
-double forward_algorithm(entry_ptr, island_t_ptr, hmm_t_ptr);
-double backward_algorithm(entry_ptr, island_t_ptr, hmm_t_ptr);
+double logsum(double*, int);
+void forward_sum(hmm_t_ptr, double*, double*, char*, char*);
+double forward_algorithm(entry_ptr, island_t_ptr, hmm_t_ptr, double**);
+void backward_sum(hmm_t_ptr, double*, double* , double* , char*, int, double**, int*);
+double backward_algorithm(entry_ptr, island_t_ptr, hmm_t_ptr, double**);
+void learning_algorithm(entry_ptr, island_t_ptr, hmm_t_ptr);
 
 
 void reverse_str(char*,const char*, char*);
@@ -89,7 +91,16 @@ void hmm_learning(entry_ptr, island_t_ptr);
 int indexOf_h(hmm_t_ptr, char*, int);
 
 
+typedef struct EM_path {
+    int *state_path;
+    double P_x;
+    int len;
+} em_t;
 
+typedef em_t* em_t_ptr;
+
+em_t_ptr viterbi_algorithm(entry_ptr, island_t_ptr, hmm_t_ptr);
+double max(double*, int, int*);
 
 
 
