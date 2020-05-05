@@ -4,12 +4,12 @@ The implementation of Markov Chain and HMM.
 # Prepareation
 - Create a folder named 'data', then put the file into this folder.
 - In main file, you need to specify the following arguments.
-    -data           : src path
-    --entryname     : entry name
-    -startpattern   : Starting with
-    -endpattern     : Ending with
-    -from           : starting from 'from' line index
-    -to             : ending to 'to' line index
+    --data           : src path
+    --entryname      : entry name
+    --startpattern   : Starting with
+    --endpattern     : Ending with
+    --from           : starting from 'from' line index
+    --to             : ending to 'to' line index
 - NOTE # if the startpattern and endpattern is not found, this program will segmentation fault.
 
 
