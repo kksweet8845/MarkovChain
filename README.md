@@ -4,12 +4,24 @@ The implementation of Markov Chain and HMM.
 # Prepareation
 - Create a folder named 'data', then put the file into this folder.
 - In main file, you need to specify the following arguments.
-    -data       : src path
-    --entry     : entry name
-    -sPattern   : Starting with
-    -ePattern   : Ending with
-    -from       : starting from 'from' line index
-    -to         : ending to 'to' line index
+    -data           : src path
+    --entryname     : entry name
+    -startpattern   : Starting with
+    -endpattern     : Ending with
+    -from           : starting from 'from' line index
+    -to             : ending to 'to' line index
+- NOTE # if the startpattern and endpattern is not found, this program will segmentation fault.
+
+
+example:
+```
+> ./main --data ./data/NC_000006.12_chromosome_6.txt \
+--entryname ">NC_000006.12 Homo sapiens chromosome 6, GRCh38.p13 Primary Assembly" \
+--startpattern ttggtaccat \
+--endpattern CTTTGCCTG \
+--from 100000 \
+--to 199999
+```
 
 
 # Illustration
