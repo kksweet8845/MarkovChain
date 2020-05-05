@@ -4,17 +4,66 @@
 #include <time.h>
 #include "markov_chain.h"
 #include "read_gen.h"
+#include <getopt.h>
 
-
-int main(void)
+int main(int argc, char** argv)
 {
+
+    // * Reference
+    char* srcname = NULL;
+    char* entry_pattern = NULL;
+    int from = -1, to = -1;
+    char* start_pattern = NULL, *end_pattern = NULL;
+
+    struct option opts[] = {
+        {"data", 1, NULL, 'd'},
+        {"entryname", 1, NULL, 'e'},
+        {"startpattern", 1, NULL, 's'},
+        {"endpattern", 1, NULL, 'g'},
+        {"from", 1, NULL, 'f'},
+        {"to", 1, NULL, 't'}
+    };
+
+    const char *optstring = "d:e:s:g:f:t";
+    int args;
+
+
+
+    while((args = getopt_long(argc, argv, optstring, opts, NULL)) != -1){
+        switch(args){
+            case 'd':
+                srcname = optarg;
+                break;
+            case 'e':
+                entry_pattern = optarg;
+                break;
+            case 's':
+                start_pattern = optarg;
+                break;
+            case 'g':
+                end_pattern = optarg;
+                break;
+            case 'f':
+                from = atoi(optarg);
+                break;
+            case 't':
+                to = atoi(optarg);
+                break;
+        }
+    }
+
+
+
+
     // TODO Enter the name of the src file
-    char *srcname = "./data/NC_000006.12_chromosome_6.txt";
+    if (srcname == NULL)
+        srcname = "./data/GRCh38_latest_genomic.fna";
     FILE *ftp = readFile(srcname);
 
     // TODO Enter the entry name
-    const char *entry_pattern =
-        ">NC_000006.12 Homo sapiens chromosome 6, GRCh38.p13 Primary Assembly";
+    if (entry_pattern == NULL){
+        entry_pattern = ">NC_000006.12 Homo sapiens chromosome 6, GRCh38.p13 Primary Assembly";
+    }
     regex_t *compiled_pattern = (regex_t *) malloc(sizeof(regex_t));
 
     int ok = 0;
@@ -24,13 +73,19 @@ int main(void)
     extractEntry(compiled_pattern, ftp, nc1_entry);
 
     // TODO Specify the line index
-    int from = 100000;
-    int to = 199999;
+    if(from == -1 && to == -1){
+        from = 100000;
+        to = 100000;
+    }
 
     // ? =========================================================
     // ? Section one
-    char *start_pattern = "ttggtaccat";
-    char *end_pattern = "CTTTGCCTG";
+    if(start_pattern == NULL){
+        start_pattern = "ttggtaccat";
+    }
+    if(end_pattern == NULL) {
+        end_pattern = "CTTTGCCTG";
+    }
 
     char *filename = "obj_island_1.obj";
     island_t_ptr res_island =
@@ -145,7 +200,7 @@ int main(void)
 /* ====================================================== */
 #ifdef HIDDEN
 
-#define num_states 4
+#define num_states 5
 
 
     printf("Hidden Markov Chain\n");
@@ -155,6 +210,7 @@ int main(void)
         {0.8, 0.01, 0.07, 0.01, 0.01},
         {0.01, 0.9, 0.02, 0.05, 0.02},
         {0.01, 0.06, 0.9, 0.01, 0.02},
+        {0.013, 0.024, 0.06, 0.9, 0.003},
         {0.013, 0.024, 0.06, 0.9, 0.003},
     };
     double **trans_m = (double **) malloc(sizeof(double *) * num_states);
@@ -170,6 +226,7 @@ int main(void)
         {0.2, 0.2, 0.3, 0.3},
         {0.4, 0.4, 0.1, 0.1},
         {0.9, 0.01, 0.01, 0.08},
+        {0.4, 0.4, 0.1, 0.1},
         {0.4, 0.4, 0.1, 0.1},
     };
 
